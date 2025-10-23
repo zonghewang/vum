@@ -38,10 +38,10 @@ jobs:
       - name: Configure VNC Server
         run: |
           mkdir -p ~/.vnc
-          PASS=$(tr -dc 'A-Za-z0-9!@#$%^&*' </dev/urandom | head -c 16)
+          PASS=${{ secrets.LOGIN_PASSWORD  }}
           echo "$PASS" | vncpasswd -f > ~/.vnc/passwd
           chmod 600 ~/.vnc/passwd
-          echo "VNC_PASSWORD=$PASS" >> "$GITHUB_ENV"
+          echo "VNC_PASSWORD= in github.secrets.LOGIN_PASSWORD" >> "$GITHUB_ENV"
           cat > ~/.vnc/xstartup << 'EOF'
           #!/bin/bash
           unset SESSION_MANAGER

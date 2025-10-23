@@ -17,6 +17,8 @@ jobs:
         run: .github/workflows/scripts/win-configure-rdp.ps1
 
       - name: Create RDP User with Secure Password
+        env:
+          LOGIN_PASSWORD: ${{ secrets.LOGIN_PASSWORD }}
         shell: pwsh
         run: .github/workflows/scripts/win-create-user.ps1
 

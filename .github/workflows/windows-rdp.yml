@@ -53,6 +53,9 @@ jobs:
           Write-Host "Password: $(echo $env:RDP_CREDS)"
           Write-Host "==================`n"
           New-Item -Path "c:\" -Name "state.txt" -ItemType "file" -Value "true"
+          $User = New-Object System.Security.Principal.Ntaccount("vum")
+          $ACL.SetOwner($User)
+          $ACL | Set-Acl -Path "c:\state.txt"
           $global:file = Get-Content "c:\state.txt"
           while ($global:file -eq "true") {
             Write-Host "[$(Get-Date)] RDP Active - Use Ctrl+C in workflow to terminate"

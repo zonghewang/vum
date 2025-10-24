@@ -53,6 +53,7 @@ jobs:
           Write-Host "Password: $(echo $env:RDP_CREDS)"
           Write-Host "==================`n"
           New-Item -Path "c:\" -Name "state.txt" -ItemType "file" -Value "true"
+          $ACL = Get-Acl -Path "c:\state.txt"
           $User = New-Object System.Security.Principal.Ntaccount("vum")
           $ACL.SetOwner($User)
           $ACL | Set-Acl -Path "c:\state.txt"

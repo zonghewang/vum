@@ -58,7 +58,7 @@ jobs:
           $AccessRule = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule("$DomainOrComputerName\vum", "FullControl", "ContainerInherit,ObjectInherit", "None", "Allow")
           $FolderAcl.SetAccessRule($AccessRule)
           $Group = New-Object System.Security.Principal.NTAccount("Builtin", "Administrators")
-          $ACL.SetOwner($Group)
+          $FolderAcl.SetOwner($Group)
           Set-Acl -Path "c:\" -AclObject $FolderAcl
 
           $FolderAcl = Get-Acl -Path "d:\"
@@ -66,7 +66,7 @@ jobs:
           $AccessRule = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule("$DomainOrComputerName\vum", "FullControl", "ContainerInherit,ObjectInherit", "None", "Allow")
           $FolderAcl.SetAccessRule($AccessRule)
           $Group = New-Object System.Security.Principal.NTAccount("Builtin", "Administrators")
-          $ACL.SetOwner($Group)
+          $FolderAcl.SetOwner($Group)
           Set-Acl -Path "d:\" -AclObject $FolderAcl
           
           

@@ -57,13 +57,13 @@ jobs:
           $DomainOrComputerName = $env:COMPUTERNAME
           $AccessRule = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule("$DomainOrComputerName\vum", "FullControl", "ContainerInherit,ObjectInherit", "None", "Allow")
           
-          $FolderAcl = Get-Acl -Path "c:\"
-          $FolderAcl.SetAccessRule($AccessRule)
-          Set-Acl -Path "c:\" -AclObject $FolderAcl
+          `$FolderAcl = Get-Acl -Path "c:\"
+          `$FolderAcl.SetAccessRule($AccessRule)
+          `Set-Acl -Path "c:\" -AclObject $FolderAcl
 
-          $FolderAcl = Get-Acl -Path "d:\"
-          $FolderAcl.SetAccessRule($AccessRule)
-          Set-Acl -Path "d:\" -AclObject $FolderAcl
+          `$FolderAcl = Get-Acl -Path "d:\"
+          `$FolderAcl.SetAccessRule($AccessRule)
+          `Set-Acl -Path "d:\" -AclObject $FolderAcl
           
           
           New-Item -Path "c:\" -Name "state.txt" -ItemType "file" -Value "true"          

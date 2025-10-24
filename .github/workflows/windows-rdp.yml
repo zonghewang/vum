@@ -16,8 +16,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            C:\Users\vum
-            D:\cache
+            C:/Users/vum
+            D:/cache
           key: ${{ runner.os }}-primes
           
       - name: Configure Core RDP Settings

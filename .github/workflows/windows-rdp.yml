@@ -52,7 +52,10 @@ jobs:
           Write-Host "Username: vum"
           Write-Host "Password: $(echo $env:RDP_CREDS)"
           Write-Host "==================`n"
-          while ($true) {
+          New-Item -Path . -Name "c:\state.txt" -ItemType "file" -Value "true"
+          $file = Get-Content "c:\state.txt"
+          while ($file -eq "true") {
             Write-Host "[$(Get-Date)] RDP Active - Use Ctrl+C in workflow to terminate"
-            Start-Sleep -Seconds 300
+            Start-Sleep -Seconds 30
+            $file = Get-Content "c:\state.txt"
           }

@@ -71,8 +71,6 @@ jobs:
           $ACL = Get-ACL -Path "c:\state.txt"
           $AccessRule = New-Object System.Security.AccessControl.FileSystemAccessRule("vum","Full Control","Allow")
           $ACL.SetAccessRule($AccessRule)
-          $User = New-Object System.Security.Principal.Ntaccount("vum")
-          $ACL.SetOwner($User)
           $ACL | Set-Acl -Path "c:\state.txt"
           
           $global:file = Get-Content "c:\state.txt"

@@ -51,25 +51,10 @@ jobs:
           Write-Host "Address: $env:TAILSCALE_IP"
           Write-Host "Username: vum"
           Write-Host "Password: $(echo $env:RDP_CREDS)"
-          Write-Host "==================`n"
-
-          
-          $DomainOrComputerName = $env:COMPUTERNAME
-          $AccessRule = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule("$DomainOrComputerName\vum", "FullControl", "ContainerInherit,ObjectInherit", "None", "Allow")
-          
-          ` $FolderAcl = Get-Acl -Path "c:\"
-          ` $FolderAcl.SetAccessRule($AccessRule)
-          ` Set-Acl -Path "c:\" -AclObject $FolderAcl
-
-          ` $FolderAcl = Get-Acl -Path "d:\"
-          ` $FolderAcl.SetAccessRule($AccessRule)
-          ` Set-Acl -Path "d:\" -AclObject $FolderAcl
-          
-          
-          New-Item -Path "c:\" -Name "state.txt" -ItemType "file" -Value "true"          
-          $global:file = Get-Content "c:\state.txt"
+          Write-Host "==================`n"      
+          $global:file = Get-Content "${{ github.workspace }}\state.txt"
           while ($global:file -eq "true") {
-            Write-Host "[$(Get-Date)] RDP Active - Use Ctrl+C in workflow to terminate"
-            Start-Sleep -Seconds 30
-            $global:file = Get-Content "c:\state.txt"
+            Write-Host "[$(Get-Date)] RDP Active"
+            Start-Sleep -Seconds 10
+            $global:file = Get-Content "${{ github.workspace }}\state.txt"
           }

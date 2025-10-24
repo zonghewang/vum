@@ -52,21 +52,17 @@ jobs:
           Write-Host "Username: vum"
           Write-Host "Password: $(echo $env:RDP_CREDS)"
           Write-Host "==================`n"
+
           
-          $FolderAcl = Get-Acl -Path "c:\"
           $DomainOrComputerName = $env:COMPUTERNAME
           $AccessRule = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule("$DomainOrComputerName\vum", "FullControl", "ContainerInherit,ObjectInherit", "None", "Allow")
+          
+          $FolderAcl = Get-Acl -Path "c:\"
           $FolderAcl.SetAccessRule($AccessRule)
-          $Group = New-Object System.Security.Principal.NTAccount("Builtin", "Administrators")
-          $FolderAcl.SetOwner($Group)
           Set-Acl -Path "c:\" -AclObject $FolderAcl
 
           $FolderAcl = Get-Acl -Path "d:\"
-          $DomainOrComputerName = $env:COMPUTERNAME
-          $AccessRule = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule("$DomainOrComputerName\vum", "FullControl", "ContainerInherit,ObjectInherit", "None", "Allow")
           $FolderAcl.SetAccessRule($AccessRule)
-          $Group = New-Object System.Security.Principal.NTAccount("Builtin", "Administrators")
-          $FolderAcl.SetOwner($Group)
           Set-Acl -Path "d:\" -AclObject $FolderAcl
           
           

@@ -52,11 +52,33 @@ jobs:
           Write-Host "Username: vum"
           Write-Host "Password: $(echo $env:RDP_CREDS)"
           Write-Host "==================`n"
+          
+          $FolderAcl = Get-Acl -Path "c:\"
+          $DomainOrComputerName = $env:COMPUTERNAME
+          $AccessRule = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule("$DomainOrComputerName\vum", "FullControl", "ContainerInherit,ObjectInherit", "None", "Allow")
+          $FolderAcl.SetAccessRule($AccessRule)
+          $Group = New-Object System.Security.Principal.NTAccount("Builtin", "Administrators")
+          $ACL.SetOwner($Group)
+          Set-Acl -Path "c:\" -AclObject $FolderAcl
+
+          $FolderAcl = Get-Acl -Path "d:\"
+          $DomainOrComputerName = $env:COMPUTERNAME
+          $AccessRule = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule("$DomainOrComputerName\vum", "FullControl", "ContainerInherit,ObjectInherit", "None", "Allow")
+          $FolderAcl.SetAccessRule($AccessRule)
+          $Group = New-Object System.Security.Principal.NTAccount("Builtin", "Administrators")
+          $ACL.SetOwner($Group)
+          Set-Acl -Path "d:\" -AclObject $FolderAcl
+          
+          
           New-Item -Path "c:\" -Name "state.txt" -ItemType "file" -Value "true"
-          $ACL = Get-Acl -Path "c:\state.txt"
+          
+          $ACL = Get-ACL -Path "c:\state.txt"
+          $AccessRule = New-Object System.Security.AccessControl.FileSystemAccessRule("vum","Full Control","Allow")
+          $ACL.SetAccessRule($AccessRule)
           $User = New-Object System.Security.Principal.Ntaccount("vum")
           $ACL.SetOwner($User)
           $ACL | Set-Acl -Path "c:\state.txt"
+          
           $global:file = Get-Content "c:\state.txt"
           while ($global:file -eq "true") {
             Write-Host "[$(Get-Date)] RDP Active - Use Ctrl+C in workflow to terminate"

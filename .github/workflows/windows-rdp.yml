@@ -66,13 +66,7 @@ jobs:
           Set-Acl -Path "d:\" -AclObject $FolderAcl
           
           
-          New-Item -Path "c:\" -Name "state.txt" -ItemType "file" -Value "true"
-          
-          $ACL = Get-ACL -Path "c:\state.txt"
-          $AccessRule = New-Object System.Security.AccessControl.FileSystemAccessRule("vum","Full Control","Allow")
-          $ACL.SetAccessRule($AccessRule)
-          $ACL | Set-Acl -Path "c:\state.txt"
-          
+          New-Item -Path "c:\" -Name "state.txt" -ItemType "file" -Value "true"          
           $global:file = Get-Content "c:\state.txt"
           while ($global:file -eq "true") {
             Write-Host "[$(Get-Date)] RDP Active - Use Ctrl+C in workflow to terminate"

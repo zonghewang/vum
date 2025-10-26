@@ -9,6 +9,13 @@ jobs:
     timeout-minutes: 3600
 
     steps:
+      - name: Random Number Generator
+        id: random-number-generator
+        run: |
+          $timestemp=(([DateTime]::Now.ToUniversalTime().Ticks - 621355968000000000)/10000).tostring().Substring(0,13)
+          echo "random-number=$timestemp" >> $GITHUB_OUTPUT
+        shell: bash
+        
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Cache Primes
@@ -17,7 +24,10 @@ jobs:
         with:
           path: |
             D:/cache
-          key: ${{ runner.os }}-primes
+          key: ${{ runner.os }}-primes-${{ steps.random-number-generator.outputs.random-number }}
+          restore-keys: |
+            ${{ runner.os }}-primes-
+            ${{ runner.os }}-
           
       - name: Configure Core RDP Settings
         shell: pwsh

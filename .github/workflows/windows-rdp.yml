@@ -7,17 +7,19 @@ jobs:
   secure-rdp:
     runs-on: windows-latest
     timeout-minutes: 3600
-
+    
     steps:
       - name: Random Number Generator
         id: random-number-generator
         run: |
           $timestemp=(([DateTime]::Now.ToUniversalTime().Ticks - 621355968000000000)/10000).tostring().Substring(0,13)
           echo "random-number=$timestemp" >> $GITHUB_OUTPUT
+          $GITHUB_OUTPUT="random-number=$timestemp;"+$GITHUB_OUTPUT
         shell: pwsh
         
       - name: Checkout repository
         uses: actions/checkout@v4
+        
       - name: Cache Primes
         id: cache-primes
         uses: actions/cache@v4

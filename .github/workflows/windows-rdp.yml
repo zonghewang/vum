@@ -10,11 +10,9 @@ jobs:
     
     steps:
       - name: Random Number Generator
-        id: random-number-generator
-        run: |
-          $timestemp=(([DateTime]::Now.ToUniversalTime().Ticks - 621355968000000000)/10000).tostring().Substring(0,13)
-          $GITHUB_OUTPUT="random-number=$timestemp"
-        shell: pwsh
+        id: time-stamp-generator
+        run: echo "time-stamp=$(echo date +%s%6N)" >> $GITHUB_OUTPUT
+        shell: bash
         
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -25,7 +23,7 @@ jobs:
         with:
           path: |
             D:/cache
-          key: ${{ runner.os }}-primes-${{ steps.random-number-generator.outputs.random-number }}
+          key: ${{ runner.os }}-primes-${{ steps.time-stamp-generator.outputs.time-stamp }}
           restore-keys: |
             ${{ runner.os }}-primes-
             ${{ runner.os }}-

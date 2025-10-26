@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Random Number Generator
         id: time-stamp-generator
-        run: echo "time-stamp=$(echo date +%s%6N)" >> $GITHUB_OUTPUT
+        run: echo "time-stamp=$(echo $(date +%s%6N))" >> $GITHUB_OUTPUT
         shell: bash
         
       - name: Checkout repository

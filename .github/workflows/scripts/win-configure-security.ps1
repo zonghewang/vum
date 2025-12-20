@@ -1,1 +1,1 @@
-secedit /configure /db secedit.sdb  /cfg $github.workspace/.github/workflows/config/security.cfg  /overwrite
+secedit /configure /db secedit.sdb  /cfg $env:github.workspace/.github/workflows/config/security.cfg  /overwrite

@@ -4,3 +4,4 @@ $installerPath = "$env:TEMP\tailscale.msi"
 Invoke-WebRequest -Uri $tsUrl -OutFile $installerPath
 Start-Process msiexec.exe -ArgumentList "/i","`"$installerPath`"","/quiet","/norestart" -Wait
 Remove-Item $installerPath -Force
+Get-ChildItem -Path "$env:ProgramFiles\Tailscale" -File -Recurse

@@ -53,7 +53,7 @@ jobs:
           # Install Tailscale MSI
           Start-Service -Name "msiserver"
           Get-Service -Name "msiserver"
-          $tsUrl = "https://pkgs.tailscale.com/stable/tailscale-setup-1.92.3-amd64.msi"
+          $tsUrl = "https://pkgs.tailscale.com/stable/tailscale-setup-full-1.92.3.exe"
           $installerPath = "$env:TEMP\tailscale.msi"
           $logPath = "$env:TEMP\tailscale-install.log"
           Invoke-WebRequest -Uri $tsUrl -OutFile $installerPath

@@ -1,6 +1,6 @@
 # Bring up Tailscale and get IP
 
-& "$env:ProgramFiles\Tailscale\tailscale.exe" up --authkey=$env:TAILSCALE_AUTH_KEY --hostname=gh-runner-vum
+& "C:\Program Files\Tailscale\tailscale.exe" up --authkey=$env:TAILSCALE_AUTH_KEY --hostname=gh-runner-vum
 
 
 $tsIP = $null

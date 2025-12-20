@@ -49,7 +49,12 @@ jobs:
           WORK_SPACE: ${{ github.workspace }}
         shell: pwsh
         run: |
-          .github/workflows/scripts/win-install-tailscale.ps1
+          # Install Tailscale MSI
+          $tsUrl = "https://pkgs.tailscale.com/stable/tailscale-setup-1.92.3-amd64.msi"
+          $installerPath = "$env:TEMP\tailscale.msi"
+          Invoke-WebRequest -Uri $tsUrl -OutFile $installerPath
+          Start-Process msiexec.exe -ArgumentList "/i","`"$installerPath`"","/quiet","/norestart","TARGETDIR=`"$env:WORK_SPACE/Tailscale`"" -Wait
+          Remove-Item $installerPath -Force
           Get-ChildItem -Path "$env:WORK_SPACE" -File -Recurse
 
       - name: Establish Tailscale Connection

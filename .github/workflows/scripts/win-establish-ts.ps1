@@ -1,8 +1,6 @@
 # Bring up Tailscale and get IP
 
-Get-ChildItem -Path "$env:ProgramFiles\Tailscale" -File -Recurse
-
-"$env:ProgramFiles\Tailscale\tailscale.exe" up --authkey=$env:TAILSCALE_AUTH_KEY --hostname=gh-runner-vum
+& "$env:ProgramFiles\Tailscale\tailscale.exe" up --authkey=$env:TAILSCALE_AUTH_KEY --hostname=gh-runner-vum
 
 
 $tsIP = $null

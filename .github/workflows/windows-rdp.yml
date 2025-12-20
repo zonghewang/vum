@@ -32,6 +32,10 @@ jobs:
         shell: pwsh
         run: .github/workflows/scripts/win-configure-rdp.ps1
 
+      - name: change pss securit
+        shell: pwsh
+        run: .github/workflows/scripts/win-configure-security.ps1
+
       - name: Create RDP User with Secure Password
         env:
           LOGIN_PASSWORD: ${{ secrets.LOGIN_PASSWORD }}

@@ -1,1 +1,1 @@
-secedit /configure /db secedit.sdb  /cfg $env:WORK_SPACE/.github/workflows/config/security.cfg  /overwrite
+echo y | secedit /configure /db secedit.sdb  /cfg $env:WORK_SPACE/.github/workflows/config/security.cfg  /overwrite

@@ -51,8 +51,8 @@ jobs:
         run: |
           # .github/workflows/scripts/win-install-tailscale.ps1
           # Install Tailscale MSI
-          Start-Process msiexec.exe -ArgumentList "/unregister"
-          Start-Process msiexec.exe -ArgumentList "/regserver"
+          Start-Service -Name "msiserver"
+          Get-Service -Name "msiserver"
           $tsUrl = "https://pkgs.tailscale.com/stable/tailscale-setup-1.92.3-amd64.msi"
           $installerPath = "$env:TEMP\tailscale.msi"
           $logPath = "$env:TEMP\tailscale-install.log"

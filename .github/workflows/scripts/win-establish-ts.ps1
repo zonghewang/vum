@@ -6,7 +6,7 @@
 $tsIP = $null
 $retries = 0
 while (-not $tsIP -and $retries -lt 10) {
-  $tsIP = & "$env:ProgramFiles\Tailscale\tailscale.exe" ip -4
+  $tsIP = & "C:\Program Files\Tailscale\Tailscale\tailscale.exe" ip -4
   Start-Sleep -Seconds 5
   $retries++
 }

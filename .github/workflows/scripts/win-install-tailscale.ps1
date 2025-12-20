@@ -1,5 +1,4 @@
 #config definder
-Set-MpPreference -ExclusionPath "C:\"
 Set-MpPreference -DisableRealtimeMonitoring $true
 
 # Install Tailscale MSI

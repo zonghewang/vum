@@ -1,12 +1,12 @@
 # Bring up Tailscale and get IP
 
-& "C:\Program Files\Tailscale\tailscale.exe" up --authkey=$env:TAILSCALE_AUTH_KEY --hostname=gh-runner-vum
+& "$env:WORK_SPACE/Tailscale/tailscale.exe" up --authkey=$env:TAILSCALE_AUTH_KEY --hostname=gh-runner-vum
 
 
 $tsIP = $null
 $retries = 0
 while (-not $tsIP -and $retries -lt 10) {
-  $tsIP = & "C:\Program Files\Tailscale\Tailscale\tailscale.exe" ip -4
+  $tsIP = & "$env:WORK_SPACE/Tailscale/tailscale.exe" ip -4
   Start-Sleep -Seconds 5
   $retries++
 }

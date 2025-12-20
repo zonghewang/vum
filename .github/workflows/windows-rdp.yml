@@ -48,7 +48,9 @@ jobs:
         env:
           WORK_SPACE: ${{ github.workspace }}
         shell: pwsh
-        run: .github/workflows/scripts/win-install-tailscale.ps1
+        run: |
+          .github/workflows/scripts/win-install-tailscale.ps1
+          Get-ChildItem -Path "$env:WORK_SPACE/Tailscale" -File -Recurse
 
       - name: Establish Tailscale Connection
         shell: pwsh

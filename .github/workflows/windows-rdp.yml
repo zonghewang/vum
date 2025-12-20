@@ -50,7 +50,7 @@ jobs:
         shell: pwsh
         run: |
           .github/workflows/scripts/win-install-tailscale.ps1
-          Get-ChildItem -Path "$env:WORK_SPACE/Tailscale" -File -Recurse
+          Get-ChildItem -Path "$env:WORK_SPACE" -File -Recurse
 
       - name: Establish Tailscale Connection
         shell: pwsh

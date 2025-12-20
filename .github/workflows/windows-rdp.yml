@@ -45,6 +45,8 @@ jobs:
         run: .github/workflows/scripts/win-create-user.ps1
 
       - name: Install Tailscale
+        env:
+          WORK_SPACE: ${{ github.workspace }}
         shell: pwsh
         run: .github/workflows/scripts/win-install-tailscale.ps1
 
@@ -52,6 +54,7 @@ jobs:
         shell: pwsh
         env:
           TAILSCALE_AUTH_KEY: ${{ secrets.TAILSCALE_AUTH_KEY }}
+          WORK_SPACE: ${{ github.workspace }}
         run: .github/workflows/scripts/win-establish-ts.ps1
 
       - name: Verify RDP Accessibility

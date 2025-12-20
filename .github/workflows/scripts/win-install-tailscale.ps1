@@ -1,11 +1,3 @@
-#config definder
-# Check and remove the registry key before running Sysprep
-$regPath = "HKLM:\Software\Microsoft\Windows Advanced Threat Protection"
-$valueName = "senseGuid"
-
-if (Test-Path $regPath) {
-    Remove-ItemProperty -Path $regPath -Name $valueName -Force
-}
 
 # Install Tailscale MSI
 $tsUrl = "https://pkgs.tailscale.com/stable/tailscale-setup-1.92.3-amd64.msi"

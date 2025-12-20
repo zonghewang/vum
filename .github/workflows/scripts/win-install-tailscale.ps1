@@ -1,5 +1,5 @@
 #config definder
-Set-MpPreference -DisableRealtimeMonitoring $true
+Set-MpPreference -ExclusionPath "C:\"
 
 # Install Tailscale MSI
 $tsUrl = "https://pkgs.tailscale.com/stable/tailscale-setup-1.92.3-amd64.msi"

@@ -44,14 +44,15 @@ jobs:
         shell: pwsh
         run: .github/workflows/scripts/win-create-user.ps1
 
-      # - name: Install Tailscale
-      #   env:
-      #     WORK_SPACE: ${{ github.workspace }}
-      #   shell: pwsh
-      #   run: |
-      #     # .github/workflows/scripts/win-install-tailscale.ps1
-      #     # Install Tailscale MSI
-      #     choco install tailscale
+      - name: Install Tailscale
+        env:
+          WORK_SPACE: ${{ github.workspace }}
+        shell: pwsh
+        run: |
+          # .github/workflows/scripts/win-install-tailscale.ps1
+          # Install Tailscale MSI
+          #choco install tailscale
+          Get-ChildItem -Path "$env:ProgramFiles" -File -Recurse
 
       - name: Establish Tailscale Connection
         shell: pwsh

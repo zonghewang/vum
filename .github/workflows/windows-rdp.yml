@@ -53,6 +53,7 @@ jobs:
           # Install Tailscale MSI
           choco install tailscale
           Get-ChildItem -Path "$env:ProgramFiles" 
+          Get-Content -Path "C:\ProgramData\chocolatey\logs\chocolatey.log"
 
       - name: Establish Tailscale Connection
         shell: pwsh

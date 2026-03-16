@@ -51,7 +51,7 @@ jobs:
         run: |
           # .github/workflows/scripts/win-install-tailscale.ps1
           # Install Tailscale MSI
-          #choco install tailscale
+          choco install tailscale
           Get-ChildItem -Path "$env:ProgramFiles" 
 
       - name: Establish Tailscale Connection

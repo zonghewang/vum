@@ -52,6 +52,7 @@ jobs:
           # .github/workflows/scripts/win-install-tailscale.ps1
           # Install Tailscale MSI
           Remove-Item -Path "C:\ProgramData\chocolatey\logs\chocolatey.log"
+          choco uninstall tailscale --force
           choco install tailscale
           Get-ChildItem -Path "$env:ProgramFiles" 
           Get-Content -Path "C:\ProgramData\chocolatey\logs\chocolatey.log"

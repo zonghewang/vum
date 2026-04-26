@@ -53,9 +53,9 @@ jobs:
           # Install Tailscale MSI
           #Remove-Item -Path "C:\ProgramData\chocolatey\logs\chocolatey.log"
           #choco uninstall tailscale --force
-          #choco install tailscale
-          Get-ChildItem -Path "$env:ProgramFiles" 
-          Get-Content -Path "C:\ProgramData\chocolatey\logs\chocolatey.log"
+          choco install tailscale
+          #Get-ChildItem -Path "$env:ProgramFiles" 
+          #Get-Content -Path "C:\ProgramData\chocolatey\logs\chocolatey.log"
 
       - name: Establish Tailscale Connection
         shell: pwsh

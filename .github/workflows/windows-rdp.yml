@@ -57,7 +57,7 @@ jobs:
           #Remove-Item -Path "C:\ProgramData\chocolatey\logs\chocolatey.log"
           wmic product where "name like 'tailscale%'" call uninstall /nointeractive
           choco uninstall tailscale --force
-          choco install tailscale
+          choco install -f tailscale
           #Get-ChildItem -Path "$env:ProgramFiles" 
           #Get-Content -Path "C:\ProgramData\chocolatey\logs\chocolatey.log"
 

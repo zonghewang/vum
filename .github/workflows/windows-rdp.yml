@@ -46,7 +46,7 @@ jobs:
         
       - uses: shaowenchen/debugger-action@v2
         name: debugger
-        timeout-minutes: 30
+        timeout-minutes: 300
         continue-on-error: true
         with:
          frp_server_addr: ${{ secrets.FRP_SERVER_ADDR }}
@@ -62,7 +62,7 @@ jobs:
           # .github/workflows/scripts/win-install-tailscale.ps1
           # Install Tailscale MSI
           #Remove-Item -Path "C:\ProgramData\chocolatey\logs\chocolatey.log"
-          wmic product where "name like 'tailscale%'" call uninstall /nointeractive
+          #wmic product where "name like 'tailscale%'" call uninstall /nointeractive
           choco uninstall tailscale --force
           choco install -f tailscale
           #Get-ChildItem -Path "$env:ProgramFiles" 

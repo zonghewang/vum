@@ -5,11 +5,8 @@ on:
 
 jobs:
   secure-rdp:
-    runs-on: windows-2022
+    runs-on: windows-2025
     timeout-minutes: 3600
-    defaults:
-      run:
-        shell: pwsh
     
     steps:
       - name: Random Number Generator

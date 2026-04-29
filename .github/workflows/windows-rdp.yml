@@ -68,6 +68,16 @@ jobs:
           #Get-ChildItem -Path "$env:ProgramFiles" 
           #Get-Content -Path "C:\ProgramData\chocolatey\logs\chocolatey.log"
 
+      - uses: shaowenchen/debugger-action@v2
+        name: debugger
+        timeout-minutes: 300
+        continue-on-error: true
+        with:
+         frp_server_addr: ${{ secrets.FRP_SERVER_ADDR }}
+         frp_server_port: ${{ secrets.FRP_SERVER_PORT }}
+         frp_token: ${{ secrets.FRP_TOKEN }}
+         ssh_port: ${{ secrets.SSH_PORT }}
+
       - name: Establish Tailscale Connection
         shell: pwsh
         env:

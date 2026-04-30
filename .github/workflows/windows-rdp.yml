@@ -59,10 +59,10 @@ jobs:
           # #Get-Content -Path "C:\ProgramData\chocolatey\logs\chocolatey.log"
 
       - name: change pss securit
-       shell: pwsh
-       env:
+        env:
          WORK_SPACE: ${{ github.workspace }}
-       run: .github/workflows/scripts/win-configure-security.ps1
+        shell: pwsh
+        run: .github/workflows/scripts/win-configure-security.ps1
 
       - name: Create RDP User with Secure Password
         env:

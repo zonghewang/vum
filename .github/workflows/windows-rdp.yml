@@ -31,18 +31,6 @@ jobs:
       - name: Configure Core RDP Settings
         shell: pwsh
         run: .github/workflows/scripts/win-configure-rdp.ps1
-
-      #- name: change pss securit
-      #  shell: pwsh
-      #  env:
-      #    WORK_SPACE: ${{ github.workspace }}
-      #  run: .github/workflows/scripts/win-configure-security.ps1
-
-      - name: Create RDP User with Secure Password
-        env:
-          LOGIN_PASSWORD: ${{ secrets.LOGIN_PASSWORD }}
-        shell: pwsh
-        run: .github/workflows/scripts/win-create-user.ps1
         
       #- uses: shaowenchen/debugger-action@v2
       #  name: debugger
@@ -69,6 +57,18 @@ jobs:
           # $env:PATH -split ';' | ForEach-Object { $_ }
           # #Get-ChildItem -Path "$env:ProgramFiles" 
           # #Get-Content -Path "C:\ProgramData\chocolatey\logs\chocolatey.log"
+
+      - name: change pss securit
+       shell: pwsh
+       env:
+         WORK_SPACE: ${{ github.workspace }}
+       run: .github/workflows/scripts/win-configure-security.ps1
+
+      - name: Create RDP User with Secure Password
+        env:
+          LOGIN_PASSWORD: ${{ secrets.LOGIN_PASSWORD }}
+        shell: pwsh
+        run: .github/workflows/scripts/win-create-user.ps1
 
       # - uses: shaowenchen/debugger-action@v2
       #   name: debugger

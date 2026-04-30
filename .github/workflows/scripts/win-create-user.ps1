@@ -19,3 +19,6 @@ Add-LocalGroupMember -Group "Remote Desktop Users" -Member "vum"
 Add-LocalGroupMember -Group "Users" -Member "vum"
 echo "RDP_CREDS=User: vum | Password: in github.secrets.LOGIN_PASSWORD" >> $env:GITHUB_ENV
 if (-not (Get-LocalUser -Name "vum")) { throw "User creation failed" }
+
+Add-WindowsCapability -Online -Name Language.Basic~~~zh-CN~0.0.1.0
+Set-SystemPreferredUILanguage -Language zh-CN

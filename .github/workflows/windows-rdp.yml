@@ -59,16 +59,16 @@ jobs:
           WORK_SPACE: ${{ github.workspace }}
         shell: pwsh
         run: |
-          # .github/workflows/scripts/win-install-tailscale.ps1
-          # Install Tailscale MSI
-          #Remove-Item -Path "C:\ProgramData\chocolatey\logs\chocolatey.log"
-          #wmic product where "name like 'tailscale%'" call uninstall /nointeractive
-          # choco uninstall tailscale --force
-          choco install -f tailscale
-          [Environment]::SetEnvironmentVariable("Path",$Env:PATH + ";C:\Program Files\Tailscale\",[EnvironmentVariableTarget]::Machine)
-          $env:PATH -split ';' | ForEach-Object { $_ }
-          #Get-ChildItem -Path "$env:ProgramFiles" 
-          #Get-Content -Path "C:\ProgramData\chocolatey\logs\chocolatey.log"
+          .github/workflows/scripts/win-install-tailscale.ps1
+          # # Install Tailscale MSI
+          # #Remove-Item -Path "C:\ProgramData\chocolatey\logs\chocolatey.log"
+          # #wmic product where "name like 'tailscale%'" call uninstall /nointeractive
+          # # choco uninstall tailscale --force
+          # choco install -f tailscale
+          # [Environment]::SetEnvironmentVariable("Path",$Env:PATH + ";C:\Program Files\Tailscale\",[EnvironmentVariableTarget]::Machine)
+          # $env:PATH -split ';' | ForEach-Object { $_ }
+          # #Get-ChildItem -Path "$env:ProgramFiles" 
+          # #Get-Content -Path "C:\ProgramData\chocolatey\logs\chocolatey.log"
 
       # - uses: shaowenchen/debugger-action@v2
       #   name: debugger

@@ -48,3 +48,5 @@ Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\E
 # Get-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" -Name "Path"
 
 $env:PATH -split ';' | ForEach-Object { $_ }
+
+echo "PATH=$NewPath" >> $env:GITHUB_ENV

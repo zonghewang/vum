@@ -39,6 +39,6 @@ $NewPath = "$currentPath;C:\Program Files\Tailscale\"
 
 [Environment]::SetEnvironmentVariable("PATH", $NewPath, "Machine")
 
-refrashenv
+refreshenv
 
 $env:PATH -split ';' | ForEach-Object { $_ }

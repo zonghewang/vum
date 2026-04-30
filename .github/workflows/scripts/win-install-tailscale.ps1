@@ -37,8 +37,13 @@ $currentPath = [Environment]::GetEnvironmentVariable("PATH", "Machine")
 $NewPath = "$currentPath;C:\Program Files\Tailscale\"
 #$NewPath = "$currentPath;$($Env:WIX)\bin"
 
-[Environment]::SetEnvironmentVariable("PATH", $NewPath, "Machine")
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" -Name "Path" -Value $NewPath
+Get-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" -Name "Path"
+
+echo ok
+# [Environment]::SetEnvironmentVariable("PATH", $NewPath, "Machine")
 
 refreshenv
+Get-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" -Name "Path"
 
 $env:PATH -split ';' | ForEach-Object { $_ }

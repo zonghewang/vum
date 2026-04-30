@@ -1,6 +1,6 @@
 # Bring up Tailscale and get IP
 
-& tailscale up --authkey=$env:TAILSCALE_AUTH_KEY --hostname=gh-runner-win-vum --exit-node=100.64.113.11
+& tailscale up --authkey=$env:TAILSCALE_AUTH_KEY --hostname=gh-runner-win-vum --exit-node=gh-runner-win-vum
 
 
 $tsIP = $null

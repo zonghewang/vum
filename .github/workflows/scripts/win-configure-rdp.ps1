@@ -5,3 +5,6 @@ Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\W
 netsh advfirewall firewall delete rule name="RDP-Tailscale"
 netsh advfirewall firewall add rule name="RDP-Tailscale" dir=in action=allow protocol=TCP localport=3389
 Restart-Service -Name TermService -Force
+
+Install-Language -Language zh-CN
+Set-SystemPreferredUILanguage -Language zh-CN

@@ -66,6 +66,7 @@ jobs:
           # choco uninstall tailscale --force
           choco install -f tailscale
           [Environment]::SetEnvironmentVariable("Path",$Env:PATH + ";C:\Program Files\Tailscale\",[EnvironmentVariableTarget]::Machine)
+          $env:PATH -split ';' | ForEach-Object { $_ }
           #Get-ChildItem -Path "$env:ProgramFiles" 
           #Get-Content -Path "C:\ProgramData\chocolatey\logs\chocolatey.log"
 

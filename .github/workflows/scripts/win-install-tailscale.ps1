@@ -34,7 +34,7 @@ choco install -f tailscale
 
 $currentPath = [Environment]::GetEnvironmentVariable("PATH", "Machine")
 # Choose one of these next two lines, depending on the WiX priority
-$NewPath = "$currentPath;C:\Program Files\Tailscale\"
+$NewPath = "C:\Program Files\Tailscale\;$currentPath"
 #$NewPath = "$currentPath;$($Env:WIX)\bin"
 
 Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" -Name "Path" -Value $NewPath

@@ -1,9 +1,4 @@
 # Bring up Tailscale and get IP
-$currentPath = [Environment]::GetEnvironmentVariable("PATH", "Machine")
-# Choose one of these next two lines, depending on the WiX priority
-$NewPath = "C:\Program Files\Tailscale\;$currentPath"
-#$NewPath = "$currentPath;$($Env:WIX)\bin"
-$env:PATH = $NewPath
 
 & tailscale up --authkey=$env:TAILSCALE_AUTH_KEY --hostname=gh-runner-vum
 

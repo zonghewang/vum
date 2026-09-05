@@ -13,5 +13,36 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: source .github/workflows/scripts/script-mac.sh
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v2
+
+    - name: Configure VNC Server
+      run: |
+          sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart \
+          -activate -configure -access -off -restart -agent -privs -all -allowAccessFor -allUsers \
+          -clientopts -setvncpw -vncpw ${{ secrets.LOGIN_PASSWORD  }}
+
+
+    - name: Install Tailscale
+      run: cbrew install --cask tailscale
+
+    - name: Start tailscaled (manual)
+      run: |
+        sudo mkdir -p /var/run
+        nohup sudo tailscaled >/tmp/tailscaled.log 2>&1 & disown
+        sleep 3
+
+    - name: Connect to Tailscale
+      run: |
+        sudo tailscale up --authkey=${{ secrets.TAILSCALE_AUTH_KEY }} --hostname=gh-mac-runner-${GITHUB_RUN_ID}
+        echo "TAILSCALE_IP=$(tailscale ip -4)" >> "$GITHUB_ENV"
+
+    - name: Keep Connection Alive
+      run: |
+        echo "=== VNC ACCESS INFORMATION ==="
+        echo "Address: ${TAILSCALE_IP}:5900"
+        echo "Password: ${VNC_PASSWORD}"
+        echo "Desktop: GNOME"
+        echo "=============================="
+        while true; do
+          echo "[$(date)] VNC Active - Cancel workflow to terminate"
+          sleep 300
+        done

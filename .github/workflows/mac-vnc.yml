@@ -1,0 +1,17 @@
+name: Mac VNC Server
+on: 
+  workflow_dispatch:
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    runs-on: macos-latest
+    timeout-minutes: 3600
+    
+    steps:
+    - uses: actions/checkout@v2
+    - run: source .github/workflows/scripts/script-mac.sh
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v2

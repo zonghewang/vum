@@ -20,11 +20,6 @@ jobs:
           -activate -configure -access -off -restart -agent -privs -all -allowAccessFor -allUsers \
           -clientopts -setvncpw -vncpw ${{ secrets.LOGIN_PASSWORD  }}
           sudo dscl . -create /Users/vum
-          sudo dscl . -create /Users/vum RealName "vum"
-          sudo dscl . -create /Users/vum UniqueID 502
-          sudo dscl . -create /Users/vum PrimaryGroupID 80
-          sudo dscl . -create /Users/vum NFSHomeDirectory /Local/Users/vum
-          sudo dscl . -create /Users/vum UserShell /bin/sh
           sudo dscl . -passwd /Users/vum /${{ secrets.LOGIN_PASSWORD  }}
           sudo dseditgroup -o edit -t group -a vum admin
 

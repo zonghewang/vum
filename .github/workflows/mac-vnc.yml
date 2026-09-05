@@ -16,11 +16,11 @@ jobs:
 
     - name: Configure VNC Server
       run: |
-          sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart \ 
-          -activate -configure -access -on -clientopts -setvnclegacy -vnclegacy yes -clientopts -setvncpw \ 
-          -vncpw ${{ secrets.LOGIN_PASSWORD  }} -restart -agent -privs -all
-          sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -activate \ 
-          -configure -access -off -restart -agent -privs -all -allowAccessFor -allUsers
+          sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart \
+           -activate -configure -access -on -clientopts -setvnclegacy -vnclegacy yes -clientopts -setvncpw \
+           -vncpw ${{ secrets.LOGIN_PASSWORD  }} -restart -agent -privs -all
+          sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -activate \
+            -configure -access -off -restart -agent -privs -all -allowAccessFor -allUsers
 
           
     - name: new user

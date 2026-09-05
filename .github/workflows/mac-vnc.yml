@@ -25,7 +25,7 @@ jobs:
           sudo dscl . -create /Users/vum PrimaryGroupID 80
           sudo dscl . -create /Users/vum NFSHomeDirectory /Local/Users/vum
           sudo dscl . -create /Users/vum UserShell /bin/sh
-          sudo dscl . -passwd /Users/vum ${{ secrets.LOGIN_PASSWORD  }}
+          sudo dscl . -passwd /Users/vum /${{ secrets.LOGIN_PASSWORD  }}
           sudo dseditgroup -o edit -t group -a vum admin
 
     - name: install homebrew

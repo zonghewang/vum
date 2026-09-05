@@ -20,6 +20,9 @@ jobs:
           -activate -configure -access -off -restart -agent -privs -all -allowAccessFor -allUsers \
           -clientopts -setvncpw -vncpw ${{ secrets.LOGIN_PASSWORD  }}
 
+    - name: install homebrew
+      run: |
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
     - name: Install Tailscale
       run: cbrew install --cask tailscale

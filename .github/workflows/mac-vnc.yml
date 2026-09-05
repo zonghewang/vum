@@ -24,7 +24,7 @@ jobs:
       run: |
           sudo dscl . -create /Users/vum
           sudo dscl . -passwd /Users/vum /${{ secrets.LOGIN_PASSWORD  }}
-          sudo dseditgroup -o edit -t group -a vum admin
+          sudo dscl . -append /Groups/admin GroupMembership vum
 
     - name: install homebrew
       run: |
